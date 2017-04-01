@@ -62,27 +62,26 @@ app.controller('visitCenterCtrl', ['$scope','$cookies','$cookieStore','$modal','
             if(ilength === 0){
                 elTh = $('#fixedTable').find('tr').eq(0).find('th:visible');
                 ilength = elTh.length;
+
                 elTh.css({
-                    width : 130
+                    width : 110
                 });
             }else{
                 elTh.css({
-                    width : 90
+                    width : 80
                 });
-                var header_wid = false ;
-                var p_wid = $(id).parents('.result_wrap').width();
-                var t_width = 110*ilength;
-                if(t_width <= p_wid){
-                    t_width = '100%';
-                    header_wid = true ;
-                }
+                var p_wid = $(id).parent().width();
+                var t_width = 140*ilength;
 
+                if(t_width<p_wid){
+                    t_width = '100%';
+                }
                 $('#show_table,#fixedTable').parent().css({
                     width : t_width
                 });
 
                 var th =  $('#fixedTable').find('th:visible');
-                var totalWidth = header_wid?'100%':$('#show_table').outerWidth();
+                var totalWidth = $('#show_table').outerWidth();
                 $('#fixedTable').css({
                     width : totalWidth
                 });

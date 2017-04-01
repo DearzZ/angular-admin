@@ -70,10 +70,10 @@ app.controller('visitCenterCtrl', ['$scope','$cookies','$cookieStore','$modal','
                 elTh.css({
                     width : 80
                 });
-                var p_wid = $(id).parents('.result_wrap').width();
+                var p_wid = $(id).parent().width();
                 var t_width = 140*ilength;
 
-                if(t_width<=p_wid){
+                if(t_width<p_wid){
                     t_width = '100%';
                 }
                 $('#show_table,#fixedTable').parent().css({
