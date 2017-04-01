@@ -1,0 +1,25 @@
+  <!-- navbar -->
+  <!--&lt;!&ndash;<div data-ng-include=" 'tpl/blocks/header.html' " class="app-header navbar">&ndash;&gt;-->
+  <!--</div>-->
+  <!-- / navbar -->
+
+  <!-- menu -->
+  <div data-ng-include=" 'tpl/blocks/aside.html' " class="app-aside {{app.settings.asideColor}} fixure-xs">
+  </div>
+  <!-- / menu -->
+
+  <!-- content -->
+  <div class="app-content">
+    <div ui-butterbar></div>
+    <a href class=" hide"  data-target=".app-aside" ></a>
+    <div class="app-content-body fade-in-up" ui-view></div>
+  </div>
+  <!-- /content -->
+
+
+  <!-- footer -->
+
+  <!-- / footer -->
+
+  <!--<div data-ng-include=" 'tpl/blocks/settings.html' " class="settings panel panel-default">-->
+  </div>

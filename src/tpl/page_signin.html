@@ -1,0 +1,28 @@
+<div class="login-container">
+  <div class="container w-login w-auto-xs" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
+
+    <a href class="login-logo"><img src="../img/login_logo.png" alt="logo"></a>
+    <div class="m-t">
+      <p class="etext">Business Operation Support System</p>
+      <p class="ctext">业务运营支撑系统</p>
+    </div>
+    <div class="m-b-lg">
+      <form name="loginForm" class="form-validation">
+        <div class="text-danger wrapper-sm text-center login-info ">
+          <span ng-show="authError">{{authError}}</span>
+        </div>
+        <div class="login-input-group">
+          <label class="icon-label user-icon"></label><!--
+          --><input type="email" placeholder="请输入您的邮箱" class="form-input " ng-model="vm.user.username" required>
+        </div>
+        <div class="login-input-group">
+          <label class="icon-label pwd-icon"></label><!--
+          --><input type="password" placeholder="请输入您的密码" class="form-input " ng-model="vm.user.password" required>
+        </div>
+        <button type="submit" class="btn btn-lg w-md login-btn" ng-click="vm.login(loginForm.$valid)">登录</button>
+        <div class="text-center forget-pwd m-t m-b"><a ui-sref="access.forgotpwd">找回密码</a></div>
+        <div class="line line-dashed"></div>
+      </form>
+    </div>
+  </div>
+</div>

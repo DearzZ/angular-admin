@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h3 class="modal-title">分配</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group m-r">
+                <input type="text" placeholder="搜索" class="form-control" ng-model="vm.filter.$">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 scroll_height_ele">
+            <table class="table table-bordered h-color" >
+                <thead>
+                <tr role="row" class="heading">
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in items|filter:vm.filter">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <label class="i-switch bg-info m-t-xs m-r">
+                            <input type="radio" name='distributePradio' ng-click="selected.item = item">
+                        <i></i>
+                        </label>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-sm btn-default" ng-click="cancel()">取消</button>
+    <button class="btn btn-sm btn-primary" ng-click="ok()">分配</button>
+</div>

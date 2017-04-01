@@ -1,0 +1,158 @@
+<div class="bg-light lter b-b wrapper-sm hidden-print">
+    <ul class="breadcrumb bg-white b-a m-b-none">
+        <li><a href>资源阶段</a></li>
+        <li class="active">待分配客户</li>
+    </ul>
+</div>
+<div class="row" ng-controller="resourceUndistributeCtrl">
+    <div class="col-sm-12 col-lg-12">
+        <!--  查询  -->
+        <div class="row wrapper-sm">
+            <div class="col-lg-12 col-sm-12">
+                <form class="form-inline" role="form">
+                    <div class="row m-b">
+                        <div class="col-lg-7 col-sm-7">
+                            <div class="form-group m-r">
+                                <select name="" class="form-control">
+                                    <option value="0">请选择城市</option>
+                                </select>
+                            </div>
+                            <div class="form-group m-r-lg">
+                                <label class="sr-only">客户姓名/电话</label>
+                                <input type="text" class="form-control" placeholder="客户姓名/电话" ng-model="bs.tel">
+                            </div>
+                            <div class="form-group m-r">报名时间</div>
+                            <div class="form-group">
+                                <label class="sr-only">starttime</label>
+                                <input type="text" class="form-control" id="startTime" placeholder="开始时间"
+                                       ng-model="bs.startTime"
+                                       onclick="laydate({elem: '#startTime',format: 'YYYY-MM-DD hh:mm', max: '2099-06-16 23:59:59', istime: true})">
+                            </div>
+                            <div class="form-group"><span>----</span></div>
+                            <div class="form-group m-r-lg">
+                                <label class="sr-only">engtime</label>
+                                <input type="text" class="form-control" id="endTime" placeholder="结束时间"
+                                       ng-model="bs.endTime"
+                                       onclick="laydate({elem: '#endTime',format: 'YYYY-MM-DD hh:mm', max: '2099-06-16 23:59:59', istime: true})">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-info">
+                                    查询
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-sm-5">
+                            <div class="form-group m-r">
+                                <button type="button" class="btn btn-info">批量分配</button>
+                            </div>
+                            <div class="form-group m-r">
+                                <button type="button" class="btn btn-info">导出</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <!--  table -->
+        <div class="row wrapper-md">
+            <div class="col-lg-12 col-sm-12" style="width: 100%; overflow-x: auto; overflow-y: hidden;">
+                <div class="result_wrap">
+                    <!-- BEGIN PORTLET-->
+                    <div>
+                        <table class="table result" style="margin-bottom:0;" id="fixedTable">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <div class="checkbox">
+                                        <label class="i-checks">
+                                            <input type="checkbox" ng-model="vm.allChecked" ng-change="vm.checkAll(vm.allChecked)">
+                                            <i></i>
+                                        </label>
+                                    </div>
+                                </th>
+                                <th>编号</th>
+                                <th>操作</th>
+                                <th>客户状态</th>
+                                <th>客户姓名</th>
+                                <th>联系电话</th>
+                                <th>四级渠道</th>
+                                <th>号码归属地</th>
+                                <th>报名时间</th>
+                                <th>报名次数</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div style="height:500px">
+                        <div style="overflow-x:visible;overflow-y: auto;height:500px;background-color: #f0f3f6;">
+                            <table class="table result" id="show_table">
+                                <tbody>
+                                <tr ng-repeat="item in vm.items|filter:vm.filter|paging:vm.page.index:vm.page.size">
+                                    <td>
+                                        <div class="checkbox">
+                                            <label class="i-checks">
+                                                <input type="checkbox" ng-model="item.$checked">
+                                                <i></i>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>01</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-info" ng-click="vm.openDistribute(item.k_name)">分配
+                                        </button>
+                                    </td>
+                                    <td>{{item.k_status}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 表格分页 -->
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-3">
+
+                <pagination total-items="vm.items|filter:vm.filter|size" ng-model="vm.page.index" max-size="11"
+                            items-per-page="vm.page.size"
+                            class="pagination-sm pull-left" boundary-links="true"></pagination>
+                <ul class="pagination pagination-sm pull-left m-l-lg">
+                    <li class="disabled"><a>共</a></li>
+                    <li><a>123456</a></li>
+                    <li class="disabled"><a>条数据</a></li>
+                    <li class="disabled"><a>-</a></li>
+                    <li><a>{{vm.page.count}}</a></li>
+                    <li class="disabled"><a>页</a></li>
+                    <li class="disabled"><a>-</a></li>
+                    <li class="disabled"><a>跳转到</a></li>
+                    <li><a class="disabled"><input type="number" class="form-control-jump" ng-model="vm.page.index" max="vm.page.count"></a></li>
+                </ul>
+
+            </div>
+
+        </div>
+        <!-- 分配tpl -->
+        <script type="text/ng-template" id="resourceCenterDistribute.html">
+            <div ng-include="'tpl/distributeTpl.html'"></div>
+        </script>
+
+        <!-- 交接tpl -->
+        <script type="text/ng-template" id="resourceCenterCurrent.html">
+            <div ng-include="'tpl/connectTpl.html'"></div>
+        </script>
+        <!-- toaster directive提示 -->
+        <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+        <!-- / toaster directive -->
+    </div>
+</div>
+

@@ -1,0 +1,44 @@
+<div class="container w-xxl w-auto-xs" ng-controller="modifyPwdCtrl" ng-init="app.settings.container = false;">
+    <a href class="navbar-brand block m-t">{{app.name}}</a>
+    <div class="m-b-lg">
+        <div class="wrapper text-center">
+            <strong>修改密码</strong>
+        </div>
+        <form name="form" class="form-validation">
+            <div class="text-danger wrapper text-center" ng-show="authError">
+                {{authError}}
+            </div>
+            <div class="list-group list-group-sm">
+                <div class="list-group-item">
+                    <input type="text" placeholder="username" class="form-control no-border" ng-model="vm.userData.username" disabled>
+                </div>
+                <div class="list-group-item">
+                    <input type="text" placeholder="name" class="form-control no-border" ng-model="vm.userData.name" disabled>
+                </div>
+                <div class="list-group-item">
+                    <input type="text" placeholder="phone" class="form-control no-border" ng-model="vm.userData.phone" disabled>
+                </div>
+                <div class="list-group-item">
+                    <input type="text" placeholder="city" class="form-control no-border" ng-model="vm.userData.city"  disabled>
+                </div>
+                <div class="list-group-item">
+                    <input type="text" placeholder="email" class="form-control no-border" ng-model="vm.userData.email" disabled>
+                </div>
+                <div class="list-group-item">
+                    <input type="text" placeholder="wechat" class="form-control no-border" ng-model="vm.userData.wechat" disabled>
+                </div>
+                <div class="list-group-item">
+                    <input type="password" placeholder="旧密码" class="form-control no-border" ng-model="vm.userData.lastPwd" required>
+                </div>
+                <div class="list-group-item">
+                    <input type="password" placeholder="新密码" class="form-control no-border" ng-model="vm.userData.newPwd" required>
+                </div>
+                <div class="list-group-item">
+                    <input type="password" placeholder="确认密码" class="form-control no-border" ng-model="vm.userData.affirmPwd" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="modify()" ng-disabled='form.$invalid'>修改密码</button>
+            <div class="line line-dashed"></div>
+        </form>
+    </div>
+</div>

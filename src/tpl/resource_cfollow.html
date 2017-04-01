@@ -1,0 +1,449 @@
+<div class="bg-light lter b-b wrapper-sm hidden-print">
+    <ul class="breadcrumb bg-white b-a m-b-none">
+        <li><a href>资源阶段</a></li>
+        <li class="active">跟进操作</li>
+    </ul>
+</div>
+<div class="row" ng-controller="resourceCfollowCtrl">
+    <div class="col-sm-12">
+        <form class="form-inline" role="form" name="cfollow">
+            <div class="panel b-a">
+                <div class="panel-heading b-b b-light"><h4 class="m-n">客户基本信息</h4></div>
+                <div class="panel-body">
+                    <div class="row wrapper-sm">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="row m-b">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">手机号码 <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" ng-model="bs.tel" placeholder="手机号码" required>
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">客户姓名 <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" ng-model="bs.username"
+                                               placeholder="客户姓名" required>
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <div class="radio m-r">
+                                            <label class="i-checks">
+                                                <input type="radio" name="a" value="option1">
+                                                <i></i>
+                                                先生
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label class="i-checks">
+                                                <input type="radio" name="a" value="option2" checked>
+                                                <i></i>
+                                                女士
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">微信</label>
+                                        <input type="text" class="form-control" ng-model="bs.wechat" placeholder="微信"
+                                               >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-12">
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">四级渠道</label>
+                                        <input type="text" class="form-control" ng-model="bs.source_four"
+                                               placeholder="四级渠道" >
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">关键词</label>
+                                        <input type="text" class="form-control" ng-model="bs.kword" placeholder="关键词"
+                                               >
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">页面</label>
+                                        <input type="text" class="form-control" ng-model="bs.view" placeholder="页面"
+                                               >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel b-a">
+                <div class="panel-heading b-b b-light"><h4 class="m-n">客户房屋信息</h4></div>
+                <div class="panel-body">
+                    <div class="row wrapper-sm">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="row m-b">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group m-r-xl">
+                                        <label class="control-label m-r">建筑面积</label>
+                                        <input type="text" class="form-control" ng-model="bs.tel" placeholder="建筑面积"
+                                               >
+                                    </div>
+                                    <div class="form-group m-r-xl">
+                                        <label class="control-label m-r">实用面积</label>
+                                        <input type="text" class="form-control" ng-model="bs.username"
+                                               placeholder="实用面积" >
+                                    </div>
+                                    <div class="form-group m-r-xl">
+                                        <label class="control-label m-r">交房状态</label>
+                                        <select class="form-control" ng-model="bs.kstate">
+                                            <option value="">空白</option>
+                                            <option value="">现房</option>
+                                            <option value="">期房</option>
+                                            <option value="">未购房</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label m-r">房型</label>
+                                        <select class="form-control">
+                                            <option value="">空白</option>
+                                            <option value="">平层</option>
+                                            <option value="">复式</option>
+                                            <option value="">别墅</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-b">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group m-r-xl">
+                                        <label class="control-label m-r">交房时间</label>
+                                        <input type="text" class="form-control" ng-model="bs.tel" placeholder="交房时间" id="launchTime"
+                                               onclick="laydate({elem: '#launchTime',format: 'YYYY-MM-DD', max: '2099-06-16 23:59:59'})">
+                                    </div>
+                                    <div class="form-group m-r-xl">
+                                        <label class="control-label m-r">装修小区</label>
+                                        <input type="text" class="form-control" ng-model="bs.wechat" placeholder="装修小区"
+                                        >
+                                    </div>
+                                    <div class="form-group m-r-xl">
+                                        <label class="control-label m-r">装修风格</label>
+                                        <select class="form-control">
+                                                <option selected="" value="">空白</option>
+                                                <option value="">简约风格</option>
+                                                <option value="">现代风格</option>
+                                                <option value="">中式风格</option>
+                                                <option value="">欧式风格</option>
+                                                <option value="">美式风格</option>
+                                                <option value="">田园风格</option>
+                                                <option value="">宜家风格</option>
+                                                <option value="">地中海风格</option>
+                                                <option value="">新古典风格</option>
+                                                <option value="">日式风格</option>
+                                                <option value="">东南亚风格</option>
+                                                <option value="">简欧风格</option>
+                                                <option value="">北欧风格</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label m-r">户型</label>
+                                        <input type="text" class="form-control" ng-model="bs.username" placeholder="户型"
+                                               >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel b-a">
+                <div class="panel-heading b-b b-light">
+                    <h4 class="m-n inline">客户补充信息</h4>
+                    <button type="button" class="btn btn-info btn-rounded m-l-lg" ng-show="!vm.supinfo" ng-click="vm.supinfo = true">显示</button>
+                    <button type="button" class="btn btn-info btn-rounded m-l-lg" ng-show="vm.supinfo" ng-click="vm.supinfo = false">隐藏</button>
+                </div>
+                <div class="panel-body" ng-show="vm.supinfo">
+                    <div class="row wrapper-sm">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="row m-b">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">生日</label>
+                                        <input type="text" class="form-control" ng-model="bs.tel" placeholder="生日"
+                                               >
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">其他电话</label>
+                                        <input type="text" class="form-control" ng-model="bs.username"
+                                               placeholder="其他电话" >
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">预计开工日期</label>
+                                        <input type="text" class="form-control" ng-model="bs.username" id="expectStart"
+                                               placeholder="预计开工日期" onclick="laydate({elem: '#expectStart',format: 'YYYY-MM-DD', max: '2099-06-16 23:59:59'})">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-b">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">邮箱</label>
+                                        <input type="text" class="form-control" ng-model="bs.tel" placeholder="邮箱"
+                                               >
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">家庭成员</label>
+                                        <input type="text" class="form-control" ng-model="bs.username"
+                                               placeholder="家庭成员" >
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">客户装修要求</label>
+                                        <input type="text" class="form-control" ng-model="bs.username"
+                                               placeholder="客户装修要求" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-b">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">学历</label>
+                                        <input type="text" class="form-control" ng-model="bs.tel" placeholder="生日"
+                                               >
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">现住地址</label>
+                                        <input type="text" class="form-control" ng-model="bs.username"
+                                               placeholder="现住地址" >
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">客户重点关注</label>
+                                        <input type="text" class="form-control" ng-model="bs.username"
+                                               placeholder="客户重点关注" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-b">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">年龄</label>
+                                        <input type="text" class="form-control" ng-model="bs.tel" placeholder="年龄"
+                                               >
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">装修区域</label>
+                                        <input type="text" class="form-control" ng-model="bs.username"
+                                               placeholder="装修区域" >
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">行业了解程度</label>
+                                        <input type="text" class="form-control" ng-model="bs.username"
+                                               placeholder="行业了解程度" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-b">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">职业</label>
+                                        <input type="text" class="form-control" ng-model="bs.tel" placeholder="职业"
+                                               >
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">详细地址</label>
+                                        <input type="text" class="form-control" ng-model="bs.username"
+                                               placeholder="详细地址" >
+                                    </div>
+                                    <div class="form-group m-r-xxl">
+                                        <label class="control-label m-r">预计装修造价</label>
+                                        <input type="text" class="form-control" ng-model="bs.wechat"
+                                               placeholder="预计装修造价" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-b">
+                                <div class="col-lg-6 col-sm-6">
+                                        <label class="col-sm-2 form-inline-label  control-label">装修地址</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-inline-long" placeholder="装修地址">
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel b-a">
+                <div class="panel-heading b-b b-light"><h4 class="m-n">客户跟进信息</h4></div>
+                <div class="panel-body">
+                    <div class="row wrapper-sm">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="row m-b">
+                                <div class="col-lg-8 col-sm-8">
+                                    <div class="revision_table">
+                                        <div class="left_name">跟进备注历史</div>
+                                        <div class="table_wrap">
+                                            <table class="table">
+                                                <tr>
+                                                    <th width="20%">跟进时间</th>
+                                                    <th width="80%">跟进备注</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>2016-09-10</td>
+                                                    <td>過兩天回來</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2016-09-10</td>
+                                                    <td>過兩天回來</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2016-09-10</td>
+                                                    <td>過兩天回來</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2016-09-10</td>
+                                                    <td>過兩天回來</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2016-09-10</td>
+                                                    <td>過兩天回來</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2016-09-10</td>
+                                                    <td>過兩天回來</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <div class="revision_remark m-t">
+                                        <em class="revision_necessary">*</em><!--
+                                        --><textarea placeholder="本次跟进备注..." name="instruction" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-b">
+                                <div class="col-lg-12 col-sm-12">
+                                    <span class="text-danger m-r">*</span>
+                                    <div class="form-group m-r-xl">
+                                        <select class="form-control">
+                                            <option value="">接通</option>
+                                            <option value="">本周上门时间确定</option>
+                                            <option value="">本周上门时间不确定</option>
+                                            <option value="">本周没有时间上门</option>
+                                            <option value="">不愿意上门，先做了解</option>
+                                            <option value="">远期交房</option>
+                                            <option value="">不方便接电话</option>
+                                            <option value="">中途挂断</option>
+                                            <option value="">对比价格</option>
+                                            <option value="">不愿意长聊</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group m-r-xl">
+                                        <select class="form-control">
+                                            <option value="">未知</option>
+                                            <option value="">关机</option>
+                                            <option value="">停机</option>
+                                            <option value="">无人接听</option>
+                                            <option value="">拒接</option>
+                                            <option value="">意向不明确</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group m-r-xl">
+                                        <select class="form-control">
+                                            <option value="">无效</option>
+                                            <option value="">区域不符</option>
+                                            <option value="">面积不符</option>
+                                            <option value="">房型不符</option>
+                                            <option value="">房龄不符</option>
+                                            <option value="">局部改造</option>
+                                            <option value="">装修已定</option>
+                                            <option value="">半包或材料已定</option>
+                                            <option value="">未购房</option>
+                                            <option value="">空号</option>
+                                            <option value="">未知转无效</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group m-r-xl">
+                                        <button type="button" class="btn btn-dark w-xs">发短信</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-b">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group m-r-xl">
+                                        <label class="control-label m-r">下次跟进时间 <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="下次跟进时间" id="lastFollowTime" ng-model="bs.lastFollowTime" required onclick="laydate({elem: '#lastFollowTime',format: 'YYYY-MM-DD', max: '2099-06-16 23:59:59'})">
+                                    </div>
+                                    <div class="form-group m-r">
+                                        <button type="button" ng-click="vm.setDate(1)" class="btn btn-info">T+1</button>
+                                    </div>
+                                    <div class="form-group m-r">
+                                        <button type="button" ng-click="vm.setDate(2)" class="btn btn-info">T+2</button>
+                                    </div>
+                                    <div class="form-group m-r">
+                                        <button type="button" ng-click="vm.setDate(3)" class="btn btn-info">T+3</button>
+                                    </div>
+                                    <div class="form-group m-r">
+                                        <button type="button" ng-click="vm.setDate(5)" class="btn btn-info">T+5</button>
+                                    </div>
+                                    <div class="form-group m-r">
+                                        <button type="button" ng-click="vm.setDate(10)" class="btn btn-info">T+10</button>
+                                    </div>
+                                    <div class="form-group m-r-xl">
+                                        <button type="button" ng-click="vm.setDate(15)" class="btn btn-info">T+15</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label m-r">重点客户</label>
+                                        <label class="i-switch bg-danger control-label">
+                                            <input type="checkbox">
+                                            <i></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-b">
+                                <div class="col-lg-12 col-sm-12" ng-switch="vm.customerStage">
+                                    <div class="form-group m-r-xl">
+                                        <label class="control-label m-r">预计上门日期 <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="下次跟进时间" id="expectVisitTime" onclick="laydate({elem: '#expectVisitTime',format: 'YYYY-MM-DD', max: '2099-06-16 23:59:59'})">
+                                    </div>
+                                    <div class="form-group m-r-xl">
+                                        <label class="control-label m-r">客户阶段</label>
+                                        <select class="form-control" ng-model="vm.customerStage">
+                                            <option value="">资源阶段</option>
+                                            <!--<option value="resourceStage">资源阶段</option>-->
+                                            <option value="intentStage">意向阶段</option>
+                                            <option value="visitStage">上门阶段</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group m-r-xl" ng-switch-when="visitStage">
+                                        <label class="control-label m-r">店面 <span class="text-danger">*</span></label>
+                                        <select class="form-control" required>
+                                            <option value="">店面</option>
+                                            <option value="">未央店</option>
+                                            <option value="">省体店</option>
+                                            <option value="">高新店</option>
+                                            <option value="">三森店</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group m-r-xl" ng-switch-when="visitStage">
+                                        <label class="control-label m-r">首次上门时间 <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="首次上门时间" required id="firstVisitTime" onclick="laydate({elem: '#firstVisitTime',format: 'YYYY-MM-DD', max: '2099-06-16 23:59:59'})">
+
+                                    </div>
+                                    <div class="form-group m-r-xl" ng-switch-when="intentStage">
+                                        <label class="control-label m-r">有效<span class="text-danger">*</span></label>
+                                        <select class="form-control" required>
+                                            <option value="">有效</option>
+                                            <option value="">预约上门</option>
+                                            <option value="">预约回访</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <button class="btn btn-info w-xs m-r-lg" ng-click="vm.cfollow(cfollow.$valid)" >保存</button>
+                    <button class="btn w-xs btn-dark">取消</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

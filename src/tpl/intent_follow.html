@@ -1,0 +1,720 @@
+<div class="bg-light lter b-b wrapper-sm hidden-print">
+    <ul class="breadcrumb bg-white b-a m-b-none">
+        <li><a href>意向阶段</a></li>
+        <li class="active">跟进客户</li>
+    </ul>
+</div>
+<div class="row" ng-controller="intentFollowCtrl">
+    <div class="col-sm-12 col-lg-12">
+        <!--  查询  -->
+        <div class="row wrapper-sm">
+            <div class="col-lg-12 col-sm-12">
+                <form class="form-inline" role="form">
+                    <div class="row m-b">
+                        <div class="col-sm-7 col-lg-7">
+                            <div class="form-group m-r">
+                                <button class="btn btn-primary">今天需联系</button>
+                            </div>
+                            <div class="form-group m-r">
+                                <button class="btn btn-primary">明天需联系</button>
+                            </div>
+                            <div class="form-group m-r">
+                                <button class="btn btn-primary">本周需联系</button>
+                            </div>
+                            <div class="form-group m-r">
+                                <button class="btn btn-primary">本月需联系</button>
+                            </div>
+                            <div class="form-group m-r">
+                                <button class="btn btn-primary">7天内需联系</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-5 col-lg-5">
+                            <div class="form-group m-r">
+                                <button class="btn btn-primary">批量交接</button>
+                            </div>
+                            <div class="form-group m-r">
+                                <a ui-sref="app.intent.customer" class="btn btn-primary">创建客户</a>
+                            </div>
+                            <div class="form-group m-r">
+                                <button class="btn btn-primary">导出</button>
+                            </div>
+                            <div class="form-group m-r">
+                                <button class="btn btn-primary">导入</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-b">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group m-r">
+                                <select name="" class="form-control">
+                                    <option value="0">请选择城市</option>
+                                </select>
+                            </div>
+                            <div class="form-group m-r">
+                                <label class="sr-only">号码归属地</label>
+                                <input type="text" class="form-control" placeholder="号码归属地" ng-model="bs.tel">
+                            </div>
+                            <div class="form-group m-r">
+                                <label class="sr-only">计划</label>
+                                <input type="text" class="form-control" placeholder="计划" ng-model="bs.jihua">
+                            </div>
+                            <div class="form-group m-r">
+                                <label class="sr-only">单元</label>
+                                <input type="text" class="form-control" placeholder="单元" ng-model="bs.danyuan">
+                            </div>
+                            <div class="form-group m-r">
+                                <label class="sr-only">关键词</label>
+                                <input type="text" class="form-control" placeholder="关键词" ng-model="bs.guanjian">
+                            </div>
+                            <div class="form-group m-r-lg">
+                                <label class="sr-only">页面</label>
+                                <input type="text" class="form-control" placeholder="页面" ng-model="bs.view">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-2 col-sm-2">
+                                    <div class="form-group">
+                                        <select name="" id="selectType" class="form-control" multiple
+                                                ng-model="vm.selectType">
+                                            <option value="name">姓名</option>
+                                            <option value="time">时间</option>
+                                            <option value="serviceState">业务状态</option>
+                                            <option value="followState">跟进状态</option>
+                                            <option value="last">最新标签标签</option>
+                                            <option value="first">首次标签标签</option>
+                                            <option value="source">渠道</option>
+                                            <option value="follows">跟进次数</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="m-b" ng-if="vm.showType.name">
+                                        <div class="form-group m-r">
+                                            <select name="" class="form-control" ng-model="bs.name_type">
+                                                <option value="">姓名类型</option>
+                                                <option value="1">客户姓名/电话</option>
+                                                <option value="">客服</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group m-r">
+                                            <select name="" class="form-control" ng-model="bs.dis">
+                                                <option value="0">非空白</option>
+                                                <option value="1">空白</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group m-r">
+                                            <label class="sr-only"></label>
+                                            <input type="text" class="form-control" placeholder="" ng-disabled="bs.dis|toNumber"
+                                                   ng-model="bs.name_value_type">
+                                        </div>
+                                    </div>
+                                    <div class="m-b" ng-if="vm.showType.time">
+                                        <div class="form-group m-r">
+                                            <select name="" class="form-control" ng-model="bs.date_type">
+                                                <option selected value="">时间类型</option>
+                                                <option value="">报名时间</option>
+                                                <option value="">下次跟进时间</option>
+                                                <option value="">首次跟进时间</option>
+                                                <option value="">最新跟进时间</option>
+                                                <option value="">交接时间</option>
+                                                <option value="">预计上门时间</option>
+                                                <option value="">上门时间</option>
+                                                <option value="">下订时间</option>
+                                                <option value="">退订日期</option>
+                                                <option value="">合同签订日期</option>
+                                                <option value="">合同解约日期</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only">time</label>
+                                            <input type="text" class="form-control" id="startTime" placeholder="开始时间"
+                                                   ng-model="bs.startTime"
+                                                   onclick="laydate({elem: '#startTime',format: 'YYYY-MM-DD hh:mm', max: '2099-06-16 23:59:59', istime: true})">
+                                        </div>
+                                        <div class="form-group"><span>----</span></div>
+                                        <div class="form-group">
+                                            <label class="sr-only">time</label>
+                                            <input type="text" class="form-control" id="endTime" placeholder="结束时间"
+                                                   ng-model="bs.endTime"
+                                                   onclick="laydate({elem: '#endTime',format: 'YYYY-MM-DD hh:mm', max: '2099-06-16 23:59:59', istime: true})">
+                                        </div>
+                                    </div>
+                                    <div class="m-b" ng-if="vm.showType.serviceState">
+                                        <div class="form-group m-r">
+                                            <select name="" class="form-control" ng-model="bs.stage">
+                                                <option selected value="">业务状态</option>
+                                                <option value="">已转意向</option>
+                                                <option value="">已上门</option>
+                                                <option value="">已下订</option>
+                                                <option value="">已退订</option>
+                                                <option value="">已签合同</option>
+                                                <option value="">解除合同</option>
+                                                <option value="">空白</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="m-b" ng-if="vm.showType.followState">
+                                        <div class="form-group m-r">
+                                            <select name="" class="form-control" ng-model="bs.stage">
+                                                <option selected value="">跟进状态</option>
+                                                <option value="">待分配</option>
+                                                <option value="">待跟进</option>
+                                                <option value="">跟进中</option>
+                                                <option value="">无效</option>
+                                                <option value="">完成</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="m-b" ng-if="vm.showType.last">
+                                        <div class="form-group m-r">
+                                            <select name="" class="form-control" ng-model="bs.last">
+                                                <option value="">最新跟进标签</option>
+                                                <option value="">有效</option>
+                                                <option value="">接通</option>
+                                                <option value="">未知</option>
+                                                <option value="">无效</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group m-r">
+                                            <select name="" class="form-control" ng-model="bs.last_child">
+                                                <option value="">子标签</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="m-b" ng-if="vm.showType.first">
+                                        <div class="form-group m-r">
+                                            <select name="" class="form-control" ng-model="bs.first">
+                                                <option value="">首次跟进标签</option>
+                                                <option value="">有效</option>
+                                                <option value="">接通</option>
+                                                <option value="">未知</option>
+                                                <option value="">无效</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group m-r">
+                                            <select name=""  class="form-control" ng-model="bs.first_child">
+                                                <option value="">子标签</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="m-b" ng-if="vm.showType.source">
+                                        <div class="form-group m-r">
+                                            <select name="" class="form-control" ng-model="bs.channel">
+                                                <option value="">一级渠道</option>
+                                                <option value="">线上</option>
+                                                <option value="">线下</option>
+                                                <option value="">VIP</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group m-r">
+                                            <select name="" class="form-control" ng-model="bs.utm_source">
+                                                <option value="">二级渠道</option>
+                                                <option value="">电销</option>
+                                                <option value="">自建平台</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="m-b" ng-if="vm.showType.follows">
+                                        <div class="form-group m-r">
+                                            <label class="sr-only">跟进数</label>
+                                            <input type="text" class="form-control" placeholder="跟进数"
+                                                   ng-model="bs.times">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-sm-4">
+                                    <div class="form-group m-r-lg">
+                                        <button class="btn w-xs btn-info" type="button" ng-click="">查询</button>
+                                    </div>
+                                    <div class="form-group m-r-lg">
+                                        <!-- 设置显示字段 -->
+                                        <button class="btn btn-dark" type="button" data-toggle="modal"
+                                                data-target="#setShowModal">设置显示字段
+                                        </button>
+
+                                        <!-- 设置显示字段Modal -->
+                                        <div class="modal fade" id="setShowModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+                                             aria-labelledby="setShow">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" ng-click="vm.closeSet()"
+                                                                aria-label="Close"><span
+                                                                aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="setShow">设置显示字段</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-4 col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">业务状态</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.serviceState.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">跟进状态</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.followState.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">一级渠道</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.source_one.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">二级渠道</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.source_two.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">三级渠道</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.source_three.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">四级渠道</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.source_four.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">计划</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.plan.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">单元</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.unit.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">关键词</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.keyword.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">页面</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.page.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">广告位</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.adver.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">客户姓名</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.k_name.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+
+
+                                                            </div>
+                                                            <div class="col-lg-4 col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">联系电话</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.tel.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">面积</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.area.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">号码归属地</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.num_attr.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">报名时间</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.sign_time.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">报名次数</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.sign_num.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">首次跟进时间</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.first_follow_time.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">首次跟进标签</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.first_follow_label.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">最新跟进时间</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.new_follow_time.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">最新跟进标签</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.new_follow_label.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">下次跟进时间</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.last_follow_time.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">跟进次数</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.follow_num.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">接收时间</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.receive.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-4 col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">跟进人</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.follow_peo.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">跟进天数</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.follow_date.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">未跟进天数</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.no_follow_date.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">接触率</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.touch.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">预计上门日期</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.pre_visit_date.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">上门日期</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.visit_date.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">下订时间</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.order_time.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">退订时间</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.un_order_time.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">合同签订日期</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.agree_date.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">合同解除日期</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.rm_agree_date.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="m-t-xs v-top m-r-xs m-b w-xs">交接时间</label>
+                                                                    <label class="i-switch bg-info m-t-xs m-r">
+                                                                        <input type="checkbox"
+                                                                               ng-model="vm.showTabel.connect.checked">
+                                                                        <i></i>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary"
+                                                                ng-click="vm.setShowCookie()" data-dismiss="modal">确定
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn w-xs btn-primary" type="button" ng-click="">导出</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--  table -->
+        <div class="row wrapper-md">
+            <div class="col-lg-12 col-sm-12" style="width: 100%; overflow-x: auto; overflow-y: hidden;">
+                <div class="result_wrap">
+                    <!-- BEGIN PORTLET-->
+                    <div>
+                        <table class="table result" style="margin-bottom:0;" id="fixedTable">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <div class="checkbox">
+                                        <label class="i-checks">
+                                            <input type="checkbox" ng-model="vm.allChecked" ng-change="vm.checkAll(vm.allChecked)">
+                                            <i></i>
+                                        </label>
+                                    </div>
+                                </th>
+                                <th>编号</th>
+                                <th>操作</th>
+                                <th ng-show="vm.showTabel.serviceState.checked">业务状态</th>
+                                <th ng-show="vm.showTabel.followState.checked">跟进状态</th>
+                                <th ng-show="vm.showTabel.source_one.checked">一级渠道</th>
+                                <th ng-show="vm.showTabel.source_two.checked">二级渠道</th>
+                                <th ng-show="vm.showTabel.source_three.checked">三级渠道</th>
+                                <th ng-show="vm.showTabel.source_four.checked">四级渠道</th>
+                                <th ng-show="vm.showTabel.plan.checked">计划</th>
+                                <th ng-show="vm.showTabel.unit.checked">单元</th>
+                                <th ng-show="vm.showTabel.keyword.checked">关键词</th>
+                                <th ng-show="vm.showTabel.page.checked">页面/</th>
+                                <th ng-show="vm.showTabel.adver.checked">广告位</th>
+                                <th ng-show="vm.showTabel.k_name.checked">客户姓名</th>
+                                <th ng-show="vm.showTabel.tel.checked">联系电话</th>
+                                <th ng-show="vm.showTabel.area.checked">面积</th>
+                                <th ng-show="vm.showTabel.num_attr.checked">号码归属地</th>
+                                <th ng-show="vm.showTabel.sign_time.checked">报名时间</th>
+                                <th ng-show="vm.showTabel.receive.checked">接收时间</th>
+                                <th ng-show="vm.showTabel.sign_num.checked">报名次数</th>
+                                <th class="info" ng-show="vm.showTabel.connect.checked">交接时间</th>
+                                <th ng-show="vm.showTabel.first_follow_time.checked">首次跟进时间</th>
+                                <th ng-show="vm.showTabel.first_follow_label.checked">首次跟进标签</th>
+                                <th ng-show="vm.showTabel.new_follow_time.checked">最新跟进时间</th>
+                                <th ng-show="vm.showTabel.new_follow_label.checked">最新跟进标签</th>
+                                <th ng-show="vm.showTabel.last_follow_time.checked">下次跟进时间</th>
+                                <th ng-show="vm.showTabel.follow_num.checked">跟进次数</th>
+                                <th ng-show="vm.showTabel.follow_peo.checked">跟进人</th>
+                                <th ng-show="vm.showTabel.follow_date.checked">跟进天数</th>
+                                <th ng-show="vm.showTabel.no_follow_date.checked">未跟进天数</th>
+                                <th ng-show="vm.showTabel.touch.checked">接触率</th>
+                                <th ng-show="vm.showTabel.pre_visit_date.checked">预计上门日期</th>
+                                <th ng-show="vm.showTabel.visit_date.checked">上门日期</th>
+                                <th ng-show="vm.showTabel.order_time.checked">下订时间</th>
+                                <th ng-show="vm.showTabel.un_order_time.checked">退订时间</th>
+                                <th ng-show="vm.showTabel.agree_date.checked">合同签订日期</th>
+                                <th ng-show="vm.showTabel.rm_agree_date.checked">合同解除日期</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div style="height:500px">
+                        <div style="overflow-x:visible;overflow-y: auto;height:500px;background-color: #f0f3f6;">
+                            <table class="table result" id="show_table">
+                                <tbody>
+                                <tr ng-repeat="item in vm.items|filter:vm.filter|paging:vm.page.index:vm.page.size">
+                                    <td>
+                                        <div class="checkbox">
+                                            <label class="i-checks">
+                                                <input type="checkbox" ng-model="item.$checked">
+                                                <i></i>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>01</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-info" ng-click="pop()">跟进</button>
+                                        <button type="button" class="btn btn-sm btn-info" ng-click="vm.openConnect(item.k_name)">交接</button>
+                                    </td>
+                                    <td ng-show="vm.showTabel.serviceState.checked">{{item.k_state}}</td>
+                                    <td ng-show="vm.showTabel.followState.checked">{{item.k_state}}</td>
+                                    <td ng-show="vm.showTabel.source_one.checked">{{item.source_one}}</td>
+                                    <td ng-show="vm.showTabel.source_two.checked">{{item.source_two}}</td>
+                                    <td ng-show="vm.showTabel.source_three.checked">{{item.source_three}}</td>
+                                    <td ng-show="vm.showTabel.source_four.checked">{{item.source_four}}</td>
+                                    <td ng-show="vm.showTabel.plan.checked">{{item.plan}}</td>
+                                    <td ng-show="vm.showTabel.unit.checked">{{item.unit}}</td>
+                                    <td ng-show="vm.showTabel.keyword.checked">zt-{{item.keyword}}</td>
+                                    <td ng-show="vm.showTabel.page.checked">{{item.page}}/</td>
+                                    <td ng-show="vm.showTabel.adver.checked">{{item.adver}}</td>
+                                    <td ng-show="vm.showTabel.k_name.checked">{{item.k_name}}</td>
+                                    <td ng-show="vm.showTabel.tel.checked">{{item.tel}}</td>
+                                    <td ng-show="vm.showTabel.area.checked">{{item.area}}㎡</td>
+                                    <td ng-show="vm.showTabel.num_attr.checked">{{item.num_attr}}</td>
+                                    <td ng-show="vm.showTabel.sign_time.checked">{{item.sign_time}}</td>
+                                    <td ng-show="vm.showTabel.receive.checked">{{item.receive}}</td>
+                                    <td ng-show="vm.showTabel.sign_num.checked"><span class="btn-sm btn-success">{{item.sign_num}}</span>
+                                    </td>
+                                    <td class="info" ng-show="vm.showTabel.connect.checked">{{item.connect}}</td>
+                                    <td ng-show="vm.showTabel.first_follow_time.checked">{{item.first_follow_time}}</td>
+                                    <td ng-show="vm.showTabel.first_follow_label.checked">{{item.first_follow_label}}
+                                    </td>
+                                    <td ng-show="vm.showTabel.new_follow_time.checked">{{item.new_follow_time}}</td>
+                                    <td ng-show="vm.showTabel.new_follow_label.checked">{{item.new_follow_label}}</td>
+                                    <td ng-show="vm.showTabel.last_follow_time.checked">{{item.last_follow_time}}</td>
+                                    <td ng-show="vm.showTabel.follow_num.checked"><span class="btn-sm btn-success">{{item.follow_num}}</span>
+                                    </td>
+                                    <td ng-show="vm.showTabel.follow_peo.checked">{{item.follow_peo}}</td>
+                                    <td ng-show="vm.showTabel.follow_date.checked">{{item.follow_date}}</td>
+                                    <td ng-show="vm.showTabel.no_follow_date.checked">{{item.no_follow_date}}</td>
+                                    <td ng-show="vm.showTabel.touch.checked">{{item.touch}}</td>
+                                    <td ng-show="vm.showTabel.pre_visit_date.checked">{{item.pre_visit_date}}</td>
+                                    <td ng-show="vm.showTabel.visit_date.checked">{{item.visit_date}}</td>
+                                    <td ng-show="vm.showTabel.order_time.checked">{{item.order_time}}</td>
+                                    <td ng-show="vm.showTabel.un_order_time.checked">{{item.un_order_time}}</td>
+                                    <td ng-show="vm.showTabel.agree_date.checked">{{item.agree_date}}</td>
+                                    <td ng-show="vm.showTabel.rm_agree_date.checked">{{item.rm_agree_date}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 表格分页 -->
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-3">
+
+                <pagination total-items="vm.items|filter:vm.filter|size" ng-model="vm.page.index" max-size="11"
+                            items-per-page="vm.page.size"
+                            class="pagination-sm pull-left" boundary-links="true"></pagination>
+                <ul class="pagination pagination-sm pull-left m-l-lg">
+                    <li class="disabled"><a>共</a></li>
+                    <li><a>123456</a></li>
+                    <li class="disabled"><a>条数据</a></li>
+                    <li class="disabled"><a>-</a></li>
+                    <li><a>{{vm.page.count}}</a></li>
+                    <li class="disabled"><a>页</a></li>
+                    <li class="disabled"><a>-</a></li>
+                    <li class="disabled"><a>跳转到</a></li>
+                    <li><a class="disabled"><input type="number" class="form-control-jump" ng-model="vm.page.index" max="vm.page.count"></a></li>
+                </ul>
+
+            </div>
+
+        </div>
+        <!-- 交接tpl -->
+        <script type="text/ng-template" id="intentFollowCurrent.html">
+            <div ng-include="'tpl/connectTpl.html'"></div>
+        </script>
+        <!-- toaster directive提示 -->
+        <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+        <!-- / toaster directive -->
+    </div>
+</div>
+

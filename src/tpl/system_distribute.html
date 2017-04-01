@@ -1,0 +1,80 @@
+<div class="bg-light lter b-b wrapper-sm hidden-print">
+    <ul class="breadcrumb bg-white b-a m-b-none">
+        <li><a href>系统设置</a></li>
+        <li class="active">分配客户</li>
+    </ul>
+</div>
+<div class="row" ng-controller="systemDistributeCtrl">
+    <div class="col-sm-12 col-lg-12">
+        <!--  查询  -->
+        <div class="row wrapper-md">
+            <div class="col-lg-12 col-sm-12">
+                <form class="form-inline" role="form">
+                    <div class="row m-b">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group m-r">
+                                <select name="" class="form-control">
+                                    <option value="0">请选择城市</option>
+                                </select>
+                            </div>
+                            <div class="form-group m-r-lg">
+                                <select name="" id="" class="form-control">
+                                    <option value="0">请选择渠道</option>
+                                </select>
+                            </div>
+                            <div class="form-group m-r">
+                                <button type="button" class="btn btn-info w-xs">查询</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <!--  table -->
+        <div class="row wrapper-md">
+            <div class="col-lg-12 col-sm-12" style="width: 100%; overflow-x: auto; overflow-y: hidden;">
+                <table class="table system_table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>城市</th>
+                        <th>员工</th>
+                        <th>角色</th>
+                        <th>渠道</th>
+                        <th>分配权重</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in vm.items">
+                        <td>{{item.k_state}}</td>
+                        <td>{{item.source_one}}</td>
+                        <td>{{item.source_two}}</td>
+                        <td>{{item.source_three}}</td>
+                        <td>
+                            <span  ng-if="!item.$editing">{{item.source_four}}</span>
+                            <div ng-if="item.$editing">
+                                <input type="text" class="form-control" maxlength="3" ng-model="item.source_four">
+                            </div>
+                        </td>
+                        <td><span class="text-success">正常</span><span class="text-danger">暂停</span></td>
+                        <td>
+                            <button class="btn btn-info" type="button" ng-click="vm.revise(item)" ng-if="!item.$editing">修改权重</button>
+                            <button class="btn btn-primary" type="button" ng-click="vm.save(item)" ng-if="item.$editing">保存</button>
+                            <button class="btn btn-warning" type="button"ng-click="vm.cancel(item)" ng-if="item.$editing" >取消</button>
+                            <button class="btn btn-success" type="button" ng-click="vm.startDistribute()" ng-if="true&&!item.$editing">开始分配</button>
+                            <button class="btn btn-danger" type="button" ng-click="vm.endDistribute()" ng-if="false&&!item.$editing">停止分配</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <!-- toaster directive提示 -->
+        <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+        <!-- / toaster directive -->
+    </div>
+</div>

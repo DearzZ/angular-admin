@@ -1,0 +1,156 @@
+<div class="bg-light lter b-b wrapper-sm hidden-print">
+    <ul class="breadcrumb bg-white b-a m-b-none">
+        <li><a href>系统设置</a></li>
+        <li class="active">过滤规则</li>
+    </ul>
+</div>
+<div class="row" ng-controller="systemFilterCtrl">
+    <div class="col-sm-12 col-lg-12">
+        <!--  查询  -->
+        <div class="row wrapper-md">
+            <div class="col-lg-12 col-sm-12">
+                <form class="form-inline" role="form">
+                    <div class="row m-b">
+                        <div class="col-lg-12 col-sm-12">
+                            <h4 class="font-thin">设置规则</h4>
+                            <div class="form-group m-r">
+                                <select class="form-control">
+                                    <option value="">请选择分站</option>
+                                </select>
+                            </div>
+                            <div class="form-group m-r">
+                                <select class="form-control">
+                                    <option value="">请选择渠道</option>
+                                </select>
+                            </div>
+                            <div class="form-group m-r-lg">
+                                <select class="form-control">
+                                    <option value="">号码归属地 </option>
+                                </select>
+                            </div>
+                            <div class="form-group m-r">
+                                面积 <
+                            </div>
+                            <div class="form-group m-r">
+                                <label class="sr-only">面积小于</label>
+                                <input type="text" class="form-control w-xs">
+                            </div>
+                            <div class="form-group m-r">
+                                面积 >
+                            </div>
+                            <div class="form-group m-r">
+                                <label class="sr-only">面积大于</label>
+                                <input type="text" class="form-control w-xs">
+                            </div>
+                            <div class="form-group m-r">
+                                <button type="button" class="btn btn-info w-xs">保存</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-12">
+                            <h4 class="font-thin">查看规则</h4>
+                            <div class="form-group m-r-lg">
+                                <select class="form-control">
+                                    <option value="">请选择分站</option>
+                                </select>
+                            </div>
+                            <div class="form-group m-r-lg">
+                                <select class="form-control">
+                                    <option value="">请选择渠道</option>
+                                </select>
+                            </div>
+                            <div class="form-group m-r-lg">
+                                <select class="form-control">
+                                    <option value="">号码归属地</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-info w-xs" type="button">查看</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--  table -->
+        <div class="row wrapper-md">
+            <div class="col-lg-12 col-sm-12" style="width: 100%; overflow-x: auto; overflow-y: hidden;">
+                <table class="table system_table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>分站</th>
+                        <th>渠道</th>
+                        <th>号码归属地</th>
+                        <th>面积</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in vm.items">
+                        <td>
+                            <span  ng-if="!item.$editing">{{item.source_one}}</span>
+                            <div  ng-if="item.$editing">
+                                <select class="form-control">
+                                    <option value="">请选择分站</option>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                                    <option value="">5</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <span  ng-if="!item.$editing">{{item.source_two}}</span>
+                            <div  ng-if="item.$editing">
+                                <select class="form-control">
+                                    <option value="">请选择分站</option>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                                    <option value="">5</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <span  ng-if="!item.$editing">{{item.source_three}}</span>
+                            <div  ng-if="item.$editing">
+                                <select class="form-control">
+                                    <option value="">请选择分站</option>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                                    <option value="">5</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <span  ng-if="!item.$editing">{{item.source_four}}</span>
+                            <div ng-if="item.$editing">
+                                <input type="text" class="form-control" ng-model="item.source_four">
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btn btn-info" type="button" ng-click="vm.revise(item)" ng-if="!item.$editing">修改</button>
+                            <button class="btn btn-primary" type="button" ng-click="vm.save(item)" ng-if="item.$editing">保存</button>
+                            <button class="btn btn-warning" type="button" ng-click="vm.cancel(item)" ng-if="item.$editing">取消</button>
+                            <button class="btn btn-danger" type="button" ng-click="vm.delete(item)" ng-if="!item.$editing">删除</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <!--删除model-->
+        <script type="text/ng-template" id="filterDelete.html">
+            <div ng-include="'tpl/deleteTpl.html'"></div>
+        </script>
+        <!-- toaster directive提示 -->
+        <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+        <!-- / toaster directive -->
+    </div>
+</div>
